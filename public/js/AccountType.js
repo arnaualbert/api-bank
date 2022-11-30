@@ -1,23 +1,23 @@
 class AccountType{
     //atributos
         type;
-        #id;
+        id;
     //contructor
-    constructor(id,type){
+    constructor(type,id){
         this.type=type;
-        this.#id=id;
+        this.id=id;
     }
     get type(){
         return this.type;
     }
     get id(){
-        return this.#id;
+        return this.id;
     }
     set type(type){
         this.type=type;
     }
     set id(id){
-        this.#id=id;
+        this.id=id;
     }
     
     }

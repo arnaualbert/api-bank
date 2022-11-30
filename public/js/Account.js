@@ -1,37 +1,37 @@
 class Account{
     //atributos
-        #DNIClient;
-        #FullNameClient;
-        accountType=new AccountType(type);
-        #amount;
+        DNIClient;
+        FullNameClient;
+        accountType;
+        amount;
         clientType;
         entryDate;
     //Constructor
     constructor(DNIClient,FullNameClient,accountType,amount,clientType,entryDate){
-        this.#DNIClient=DNIClient;
-        this.#FullNameClient=FullNameClient;
-        this.accountType=accountType;
-        this.#amount=amount;
+        this.DNIClient=DNIClient;
+        this.FullNameClient=FullNameClient;
+        this.accountType= new AccountType(accountType);
+        this.amount=amount;
         this.clientType=clientType
         this.entryDate=entryDate;
     }
     get DNIClient(){
-        return this.#DNIClient;
+        return this.DNIClient;
     }
     set DNIClient(DNIClient){
-        this.#DNIClient=DNIClient;
+        this.DNIClient=DNIClient;
     }
     get FullNameClient(){
-        return this.#FullNameClient;
+        return this.FullNameClient;
     }
     set FullNameClient(FullNameClient){
-        this.#FullNameClient=FullNameClient;
+        this.FullNameClient=FullNameClient;
     } 
     get amount(){
-        return this.#amount;
+        return this.amount;
     }
     set amount(amount){
-        this.#amount=amount;
+        this.amount=amount;
     } 
     get clientType(){
         return this.clientType;
