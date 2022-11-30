@@ -35,7 +35,7 @@ $(document).ready(function () {
   //     }
   //   });
 
-  $.getJSON("/api/login", function (data) {
+  $.getJSON("/api/login", function getdata(data) {
     var cuenta;
     items = []
     for (let i = 0; i < data.length; i++) {
@@ -45,11 +45,46 @@ $(document).ready(function () {
     cuenta = new Account(si["dni"],si["full_name"],si["account_type"],si["amount"],si["client_type"],si["entry_date"])
     items.push(cuenta)
     }    //console.log(items)
-    return items
+
+
+    for (let i = 0; i < items.length; i++) {
+      no = items[i];
+      console.log(no.DNIClient)
+      // if(si["amount"]<10000){
+      //   si["client_type"]="Poor client"
+      // }
+      // else if(si["amount"]>10000 && si["amount"]<100000){
+      //   si["client_type"]="Normall client"
+      // }
+      // else if(si["amount"]>100000){
+      //   si["client_type"]="Very rich client"
+      // }
+      // console.log(si);
+      // var items = [];
+      // $.each(si, function (key, val) {
+      //   if(key == 'full_name' || key == 'amount'){
+      //   items.push("<td id='" + key + "'><input value='"+ val + "'> </input></td>")}
+      //   else if(key == 'account_type'){
+      //     items.push("<td id='" + key + "'><select><option>"+val+"</option><option>Personal Account</option><option>Savings account</option>Solidary account</select></td>")
+      //   }
+      //   else if(key=='entry_date'){
+      //     items.push("<td id='" + key + "'><input id='datepicker' value='"+val+"'></input></td>")
+      //     $( "#datepicker" ).datepicker({dateFormat:'dd-mm-yy',maxDate: 0})
+      //   }
+      //   else{items.push("<td id='" + key + "'>" + val + "</li>");
+      //   };
+      // });
+
+      // $("<tr/>", {
+      //   "class": "my-new-list",
+      //   html: items.join("")
+      // }).appendTo("#sample_data");
+    }
+
+
   });
 
 
-  console.log(items)
 });
     
 
