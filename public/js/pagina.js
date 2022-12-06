@@ -314,6 +314,8 @@ function doobjects(data){
     si["client_type"]="Very rich client"
   }
   cuenta = new Account(si["dni"],si["full_name"],si["account_type"],si["amount"],si["client_type"],si["entry_date"])
+  localStorage.setItem("cuenta"+i+"",cuenta);
+  console.log(localStorage.getItem("cuenta"+i+""))
   items.push(cuenta)
   }
   return items
