@@ -67,7 +67,7 @@ app.post('/api/mod', (req, res) => {
 })
 
 
-// Listen on enviroment port or 5000
+
 app.listen(port, () => console.log(`Listening on port ${port}`))
 app.listen(3000, ()=>{
     console.log('Aquesta és la nostra API-REST que corre en http://localhost:3000')
