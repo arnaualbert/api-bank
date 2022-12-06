@@ -1,28 +1,9 @@
 $(document).ready(function () {
  
   var todo = $.get("/api/datos", function getdata(data) {
-    var cuenta;
-    items = []
-    var tabla = [];
-    for (let i = 0; i < data.length; i++) {
-      si = data[i];
-      // we change de value of client type 
-      if(si["amount"]<10000){
-        si["client_type"]="Poor client"
-      }
-      else if(si["amount"]>10000 && si["amount"]<100000){
-        si["client_type"]="Normall client"
-      }
-      else if(si["amount"]>100000){
-        si["client_type"]="Very rich client"
-      }
-      //here we do the object Account
-      cuenta = new Account(si["dni"],si["full_name"],si["account_type"],si["amount"],si["client_type"],si["entry_date"])
-      console.log(cuenta)
-      localStorage.setItem("cuenta"+i+"", cuenta);
-      console.log(localStorage.getItem("cuenta"+i+""))
-      items.push(cuenta)
-    }
+    var objetos = todo.responseJSON
+    items = doobjects(objetos)
+    console.log(items)
     // we do the table with the values of the database
     for (let i = 0; i < items.length; i++) {
       no = items[i];
@@ -33,7 +14,7 @@ $(document).ready(function () {
         cuentas.push("<td><input type='text' id='nombre_nuevo"+i+"' value='"+ no.FullNameClient +"'></input><p id='error_nombre"+i+"'></p></td>")
         cuentas.push("<td><select name='' id='tipo_cuenta"+i+"'> <option value='"+tipo.type+"'>"+ tipo.type +"</option> <option value='Savings account'>Savings account</option>  <option value='Investement account'>Investement account</option><option value='Personal account'>Personal account</option><option value='Solidary account'>Solidary account</option><option value='Individual Savings Account'>Individual Savings Account</option><option value='Fixed deposit account'>Fixed deposit account</option><option value='Tax-Free Savings Account'>Tax-Free Savings Account</option></select></td>")
         cuentas.push("<td><input type='number' id='cantidad"+i+"' value='"+ no.amount +"'></input><p id='error_cantidad"+i+"'></p></td>")
-        cuentas.push("<td>"+no.clientType +"</td>")
+        cuentas.push("<td><input id='tipo_cliente"+i+"' type='text' value='"+no.clientType+"' readonly></td>")
         cuentas.push("<td><input class='datepicker' id='fecha"+i+"' value='"+ no.entryDate +"'></input></td>")
         cuentas.push("<td><button type='submit' id='enviar"+i+"'>Enviar</button></td>")
 
@@ -316,7 +297,8 @@ $(document).ready(function () {
   console.log(todo)
 
 });
-    
+
+// we do the objects here
 function doobjects(data){
   var cuenta;
   items = []
@@ -333,12 +315,13 @@ function doobjects(data){
     si["client_type"]="Very rich client"
   }
   cuenta = new Account(si["dni"],si["full_name"],si["account_type"],si["amount"],si["client_type"],si["entry_date"])
+  localStorage.setItem("cuenta"+i+"", cuenta);
+  console.log(localStorage.getItem("cuenta"+i+""))
   items.push(cuenta)
   }
   return items
 }    
-
-
+// validates that only letters work in the name and surname
 function validaNomCognoms(value) {
   var patternom = /^([A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]{1,30})$/;
   if (patternom.test(value)) {
@@ -348,6 +331,8 @@ function validaNomCognoms(value) {
   };
 
 }
+
+//validates that only numbers work in the amount
 function valida_amount(value) {
   var patternom = /^([0-9]{1,999999999999999999999999999})$/;
   if (patternom.test(value)) {
