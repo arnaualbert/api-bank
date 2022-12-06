@@ -298,7 +298,6 @@ $(document).ready(function () {
 
 });
 
-// we do the objects here
 function doobjects(data){
   var cuenta;
   items = []
@@ -315,13 +314,12 @@ function doobjects(data){
     si["client_type"]="Very rich client"
   }
   cuenta = new Account(si["dni"],si["full_name"],si["account_type"],si["amount"],si["client_type"],si["entry_date"])
-  localStorage.setItem("cuenta"+i+"", cuenta);
-  console.log(localStorage.getItem("cuenta"+i+""))
   items.push(cuenta)
   }
   return items
 }    
-// validates that only letters work in the name and surname
+
+
 function validaNomCognoms(value) {
   var patternom = /^([A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]{1,30})$/;
   if (patternom.test(value)) {
@@ -331,8 +329,6 @@ function validaNomCognoms(value) {
   };
 
 }
-
-//validates that only numbers work in the amount
 function valida_amount(value) {
   var patternom = /^([0-9]{1,999999999999999999999999999})$/;
   if (patternom.test(value)) {
